@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>National Fuel Pass</title>
-        <link href='favicon.png' rel='shortcut icon' type='image/x-icon'/>
+    <link href='favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -22,15 +22,49 @@
             max-width: 900px;
         }
 
-        .page-header {
-            font-size: 1.25rem;
-            font-weight: bold;
+        /* --- New Header Styles --- */
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .emblem-img {
+            height: 90px;
             margin-bottom: 20px;
         }
 
-        .page-header .step-text {
-            color: #c43224;
+        .lang-selector {
+            background-color: #f0f0f0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
         }
+
+        .lang-btn {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-top: 5px solid #e0e0e0; /* Default thick top border */
+            border-radius: 4px;
+            padding: 10px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #333;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .lang-btn:hover {
+            background-color: #f9f9f9;
+        }
+
+        .lang-btn.active {
+            border-top-color: #d32f2f; /* Red top border for active state */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* ------------------------- */
 
         .card {
             background-color: #f6f6f6;
@@ -55,7 +89,7 @@
         }
 
         .nav-left i {
-            color: #c43224; /* Red home icon */
+            color: #c43224; 
             margin-right: 5px;
         }
 
@@ -180,16 +214,8 @@
             color: #5c8c36;
         }
 
-        .btn-change i {
-            margin-right: 5px;
-        }
-
         .btn-delete {
             color: #c43224;
-        }
-
-        .btn-delete i {
-            margin-right: 5px;
         }
 
         /* Mobile Responsiveness */
@@ -215,67 +241,130 @@
 <body>
 
 <div class="main-wrapper">
+    
+    <div class="header-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Emblem_of_Sri_Lanka.svg" alt="Sri Lanka Emblem" class="emblem-img">
+        
+        <div class="lang-selector">
+            <button class="lang-btn active" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="si">සිංහල</button>
+            <button class="lang-btn" data-lang="ta">தமிழ்</button>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-nav">
             <div class="nav-left">
-                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-home"></i> <span data-key="nav_home">Home</span></a>
                 <span>|</span>
-                <a href="#">Station List</a>
+                <a href="#" data-key="nav_station">Station List</a>
             </div>
             <div class="nav-right">
-                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i> <span data-key="nav_logout">Logout</span></a>
             </div>
         </div>
 
-        <div class="card-title-bar">
+        <div class="card-title-bar" data-key="title_main">
             National Fuel Pass
         </div>
 
         <div class="card-body">
             <div class="content-left">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=placeholder" alt="QR Code" class="qr-code-img">
-                <div class="code-text">Code :</div>
+                <div class="code-text"><span data-key="lbl_code">Code :</span> <span id="qr-code-val"></span></div>
                 
-                <button class="btn btn-blue">Send QR to My Mobile</button>
-                <button class="btn btn-green">Download QR</button>
+                <button class="btn btn-blue" data-key="btn_send_qr">Send QR to My Mobile</button>
+                <button class="btn btn-green" data-key="btn_dl_qr">Download QR</button>
             </div>
             
             <div class="content-right">
                 <div class="quota-box">
-                    <div class="quota-text">Eligible Weekly Quota: 10.000 L</div>
-                    <div class="quota-text">Balance Weekly Quota: 10.000 L ( Resets on - 2026-3-18 )</div>
+                    <div class="quota-text"><span data-key="lbl_eligible">Eligible Weekly Quota:</span> 10.000 L</div>
+                    <div class="quota-text"><span data-key="lbl_balance">Balance Weekly Quota:</span> 10.000 L <span data-key="lbl_resets">( Resets on - 2026-3-18 )</span></div>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="footer-left">
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Privacy Notice</a>
+                <a href="#" data-key="ftr_terms">Terms & Conditions</a>
+                <a href="#" data-key="ftr_privacy">Privacy Notice</a>
             </div>
             <div class="footer-right">
-                <a href="#" class="btn-change"><i class="fas fa-redo"></i> Change QR code</a>
-                <a href="#" class="btn-delete"><i class="fas fa-trash"></i> Delete Profile</a>
+                <a href="#" class="btn-change"><i class="fas fa-redo"></i> <span data-key="btn_change">Change QR code</span></a>
+                <a href="#" class="btn-delete"><i class="fas fa-trash"></i> <span data-key="btn_delete">Delete Profile</span></a>
             </div>
         </div>
     </div>
 </div>
+
 <script>
+    // --- Translation Dictionary ---
+    const translations = {
+        en: {
+            nav_home: "Home",
+            nav_station: "Station List",
+            nav_logout: "Logout",
+            title_main: "National Fuel Pass",
+            lbl_code: "Code :",
+            btn_send_qr: "Send QR to My Mobile",
+            btn_dl_qr: "Download QR",
+            lbl_eligible: "Eligible Weekly Quota:",
+            lbl_balance: "Balance Weekly Quota:",
+            lbl_resets: "( Resets on - 2026-3-18 )",
+            ftr_terms: "Terms & Conditions",
+            ftr_privacy: "Privacy Notice",
+            btn_change: "Change QR code",
+            btn_delete: "Delete Profile"
+        },
+        si: {
+            nav_home: "මුල් පිටුව",
+            nav_station: "පිරවුම්හල් ලැයිස්තුව",
+            nav_logout: "ඉවත් වන්න",
+            title_main: "ජාතික ඉන්ධන අවසරපත",
+            lbl_code: "කේතය :",
+            btn_send_qr: "QR කේතය මාගේ ජංගම දුරකථනයට යවන්න",
+            btn_dl_qr: "QR කේතය බාගත කරන්න",
+            lbl_eligible: "සතිපතා හිමි කෝටාව:",
+            lbl_balance: "ඉතිරි සතිපතා කෝටාව:",
+            lbl_resets: "( යාවත්කාලීන වන්නේ - 2026-3-18 )",
+            ftr_terms: "නියමයන් සහ කොන්දේසි",
+            ftr_privacy: "රහස්‍යතා නිවේදනය",
+            btn_change: "QR කේතය වෙනස් කරන්න",
+            btn_delete: "ගිණුම මකන්න"
+        },
+        ta: {
+            nav_home: "முகப்பு",
+            nav_station: "நிலையங்களின் பட்டியல்",
+            nav_logout: "வெளியேறு",
+            title_main: "தேசிய எரிபொருள் அனுமதிப்பத்திரம்",
+            lbl_code: "குறியீடு :",
+            btn_send_qr: "QR குறியீட்டை என் தொலைபேசிக்கு அனுப்பு",
+            btn_dl_qr: "QR குறியீட்டை பதிவிறக்கு",
+            lbl_eligible: "வாராந்திர ஒதுக்கீடு:",
+            lbl_balance: "மீதமுள்ள வாராந்திர ஒதுக்கீடு:",
+            lbl_resets: "( புதுப்பிக்கப்படும் திகதி - 2026-3-18 )",
+            ftr_terms: "நிபந்தனைகள்",
+            ftr_privacy: "தனியுரிமை அறிவிப்பு",
+            btn_change: "QR குறியீட்டை மாற்று",
+            btn_delete: "கணக்கை அழி"
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
+        // --- QR Logic (Original) ---
         const urlParams = new URLSearchParams(window.location.search);
         const qrCodeValue = urlParams.get('code') || "Placeholder";
         
         const qrImage = document.querySelector('.qr-code-img');
-        const codeTextElement = document.querySelector('.code-text');
+        const codeTextElement = document.getElementById('qr-code-val');
         const downloadBtn = document.querySelector('.btn-green');
         const shareBtn = document.querySelector('.btn-blue');
 
-        // 1. Update UI based on URL
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrCodeValue)}`;
         qrImage.src = qrUrl;
-        codeTextElement.textContent = `Code : ${qrCodeValue}`;
+        codeTextElement.textContent = qrCodeValue;
 
-        // 2. Download QR Functionality
         downloadBtn.addEventListener('click', async (e) => {
             e.preventDefault();
             try {
@@ -295,7 +384,6 @@
             }
         });
 
-        // 3. Share Functionality (Mobile Native Share)
         shareBtn.addEventListener('click', async () => {
             if (navigator.share) {
                 try {
@@ -310,6 +398,30 @@
             } else {
                 alert("Sharing is not supported on this browser. Try using a mobile device.");
             }
+        });
+
+        // --- Translation Logic (New) ---
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const translatableElements = document.querySelectorAll('[data-key]');
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                langButtons.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Get selected language
+                const selectedLang = btn.getAttribute('data-lang');
+
+                // Update text for all elements with a data-key
+                translatableElements.forEach(el => {
+                    const key = el.getAttribute('data-key');
+                    if (translations[selectedLang] && translations[selectedLang][key]) {
+                        el.textContent = translations[selectedLang][key];
+                    }
+                });
+            });
         });
     });
 </script>
