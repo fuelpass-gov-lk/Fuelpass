@@ -22,50 +22,44 @@
             max-width: 900px;
         }
 
-        /* --- Updated Header Styles for compactness --- */
         .header-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 20px; /* Reduced from 30px */
+            margin-bottom: 20px;
         }
 
         .emblem-img {
-            height: 60px; /* Reduced from 90px to match screen */
-            margin-bottom: 15px; /* Reduced from 20px */
+            height: 60px;
+            margin-bottom: 15px;
         }
 
         .lang-selector {
-            background-color: #fcfcfc; /* Lightened from #f0f0f0 to match screen */
-            padding: 8px 10px; /* Reduced padding from 15px 20px */
-            border-radius: 4px; /* Slightly sharper corners */
+            background-color: #fcfcfc;
+            padding: 8px 10px;
+            border-radius: 4px;
             display: flex;
-            gap: 10px; /* Reduced from 15px */
-            border: 1px solid #eee; /* Added a thin border like in the screenshot's container */
+            gap: 10px;
+            border: 1px solid #eee;
         }
 
         .lang-btn {
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
-            border-top: 3px solid #e0e0e0; /* Default thick top border - reduced from 5px */
+            border-top: 3px solid #e0e0e0;
             border-radius: 4px;
-            padding: 6px 15px; /* Reduced internal padding from 10px 25px */
-            font-size: 0.9rem; /* Slightly smaller font from 1rem */
+            padding: 6px 15px;
+            font-size: 0.9rem;
             cursor: pointer;
             color: #333;
             transition: all 0.2s ease;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        .lang-btn:hover {
-            background-color: #f9f9f9;
-        }
-
         .lang-btn.active {
-            border-top-color: #d32f2f; /* Red top border for active state */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Lighter shadow than original */
+            border-top-color: #d32f2f;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        /* ------------------------- */
 
         .card {
             background-color: #f6f6f6;
@@ -74,7 +68,6 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
 
-        /* Top Navigation Bar */
         .card-nav {
             display: flex;
             justify-content: space-between;
@@ -105,7 +98,6 @@
             font-size: 1rem;
         }
 
-        /* Black Title Bar */
         .card-title-bar {
             background-color: #000000;
             color: #ffffff;
@@ -115,7 +107,6 @@
             font-weight: bold;
         }
 
-        /* Content Area */
         .card-body {
             display: flex;
             padding: 30px;
@@ -142,6 +133,7 @@
             font-size: 0.9rem;
             margin-bottom: 25px;
             padding-left: 10px;
+            line-height: 1.6;
         }
 
         .btn {
@@ -159,17 +151,10 @@
             box-sizing: border-box;
         }
 
-        .btn-blue {
-            background-color: #3866df;
-        }
+        .btn-blue { background-color: #3866df; }
+        .btn-green { background-color: #5c8c36; }
 
-        .btn-green {
-            background-color: #5c8c36;
-        }
-
-        .content-right {
-            flex: 1;
-        }
+        .content-right { flex: 1; }
 
         .quota-box {
             border: 1px solid #e0e0e0;
@@ -184,7 +169,6 @@
             margin-bottom: 8px;
         }
 
-        /* Existing Card Footer Area (Preserved) */
         .card-footer {
             display: flex;
             justify-content: space-between;
@@ -211,56 +195,30 @@
             align-items: center;
         }
 
-        .btn-change {
-            color: #5c8c36;
-        }
+        .btn-change { color: #5c8c36; }
+        .btn-delete { color: #c43224; }
 
-        .btn-delete {
-            color: #c43224;
-        }
-
-        /* --- New Page Footer Styles for images --- */
         .page-footer-imgs {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px; /* Space between images */
-            padding: 30px 0 10px 0; /* Vertical padding */
-            margin-top: 20px; /* Space from the main card */
+            gap: 30px;
+            padding: 30px 0 10px 0;
+            margin-top: 20px;
             width: 100%;
         }
 
         .page-footer-imgs img {
-            max-height: 40px; /* Appropriate size for footer images */
+            max-height: 40px;
             width: auto;
             object-fit: contain;
         }
-        /* ------------------------- */
 
-        /* Mobile Responsiveness */
         @media (max-width: 650px) {
-            .card-body {
-                flex-direction: column;
-            }
-            .content-left {
-                flex: auto;
-                align-items: center;
-                text-align: center;
-            }
-            .btn {
-                max-width: 300px;
-            }
-            .card-footer {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .page-footer-imgs {
-                gap: 15px;
-                flex-wrap: wrap; /* Allows wrapping on very small screens */
-            }
-            .page-footer-imgs img {
-                max-height: 30px; /* Smaller images on mobile */
-            }
+            .card-body { flex-direction: column; }
+            .content-left { flex: auto; align-items: center; text-align: center; }
+            .btn { max-width: 300px; }
+            .card-footer { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -297,7 +255,13 @@
         <div class="card-body">
             <div class="content-left">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=placeholder" alt="QR Code" class="qr-code-img">
-                <div class="code-text"><span data-key="lbl_code">Code :</span> <span id="qr-code-val"></span></div>
+                
+                <div class="code-text">
+                    <div><span data-key="lbl_code">Code :</span> <span id="qr-code-val"></span></div>
+                    <div style="font-weight: bold; margin-top: 5px;">
+                        <span data-key="lbl_vehicle">Vehicle No :</span> <span id="vehicle-no-val"></span>
+                    </div>
+                </div>
                 
                 <button class="btn btn-blue" data-key="btn_send_qr">Send QR to My Mobile</button>
                 <button class="btn btn-green" data-key="btn_dl_qr">Download QR</button>
@@ -321,14 +285,17 @@
                 <a href="#" class="btn-delete"><i class="fas fa-trash"></i> <span data-key="btn_delete">Delete Profile</span></a>
             </div>
         </div>
-    </div> <div class="page-footer-imgs">
+    </div> 
+
+    <div class="page-footer-imgs">
         <img src="https://fuelpass.gov.lk/static/media/sri-lanka-emblem.0f4c57344c7a58c406d7.png" alt="Sri Lanka Emblem">
         <img src="https://fuelpass.gov.lk/static/media/dialog.b01c803388f612478e51.png" alt="Dialog Axiata">
         <img src="https://s3.ap-south-1.amazonaws.com/enfection.com-s3/wp-content/uploads/2021/10/mit-black-png-2.png" alt="ICTA">
     </div>
 
-</div> <script>
-    // --- Translation Dictionary ---
+</div> 
+
+<script>
     const translations = {
         en: {
             nav_home: "Home",
@@ -336,6 +303,7 @@
             nav_logout: "Logout",
             title_main: "National Fuel Pass",
             lbl_code: "Code :",
+            lbl_vehicle: "Vehicle No :",
             btn_send_qr: "Send QR to My Mobile",
             btn_dl_qr: "Download QR",
             lbl_eligible: "Eligible Weekly Quota:",
@@ -352,6 +320,7 @@
             nav_logout: "ඉවත් වන්න",
             title_main: "ජාතික ඉන්ධන අවසරපත",
             lbl_code: "කේතය :",
+            lbl_vehicle: "වාහන අංකය :",
             btn_send_qr: "QR කේතය මාගේ ජංගම දුරකථනයට යවන්න",
             btn_dl_qr: "QR කේතය බාගත කරන්න",
             lbl_eligible: "සතිපතා හිමි කෝටාව:",
@@ -368,6 +337,7 @@
             nav_logout: "வெளியேறு",
             title_main: "தேசிய எரிபொருள் அனுமதிப்பத்திரம்",
             lbl_code: "குறியீடு :",
+            lbl_vehicle: "வாகன எண் :",
             btn_send_qr: "QR குறியீட்டை என் தொலைபேசிக்கு அனுப்பு",
             btn_dl_qr: "QR குறியீட்டை பதிவிறக்கு",
             lbl_eligible: "வாராந்திர ஒதுக்கீடு:",
@@ -380,20 +350,49 @@
         }
     };
 
+    function generateDeterministicVehicle(codeStr) {
+        // String to numeric hash
+        let hash = 0;
+        for (let i = 0; i < codeStr.length; i++) {
+            hash = ((hash << 5) - hash) + codeStr.charCodeAt(i);
+            hash |= 0; 
+        }
+        hash = Math.abs(hash);
+
+        const provinces = ["WP", "CP", "SP", "NW", "NC", "NP", "EP", "UVA", "SAB"];
+        const province = provinces[hash % provinces.length];
+
+        const isThreeLetter = (hash % 3 === 0);
+        let letters = "";
+        let tempHash = hash;
+        const len = isThreeLetter ? 3 : 2;
+        
+        for (let i = 0; i < len; i++) {
+            letters += String.fromCharCode(65 + (tempHash % 26));
+            tempHash = Math.floor(tempHash / 26) + 5;
+        }
+
+        const digits = (hash % 9000) + 1000;
+        return `${province} ${letters}-${digits}`;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-        // --- QR Logic (Original) ---
         const urlParams = new URLSearchParams(window.location.search);
-        const qrCodeValue = urlParams.get('code') || "Placeholder";
+        const qrCodeValue = urlParams.get('code') || "igc654&$64ggx";
         
         const qrImage = document.querySelector('.qr-code-img');
         const codeTextElement = document.getElementById('qr-code-val');
+        const vehicleTextElement = document.getElementById('vehicle-no-val');
         const downloadBtn = document.querySelector('.btn-green');
         const shareBtn = document.querySelector('.btn-blue');
 
+        // Set Values
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrCodeValue)}`;
         qrImage.src = qrUrl;
         codeTextElement.textContent = qrCodeValue;
+        vehicleTextElement.textContent = generateDeterministicVehicle(qrCodeValue);
 
+        // Download logic
         downloadBtn.addEventListener('click', async (e) => {
             e.preventDefault();
             try {
@@ -408,45 +407,37 @@
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
             } catch (err) {
-                console.error("Download failed", err);
-                alert("Failed to download image. Try long-pressing the QR code.");
+                alert("Download failed. Long-press the QR code to save.");
             }
         });
 
+        // Share logic
         shareBtn.addEventListener('click', async () => {
             if (navigator.share) {
                 try {
                     await navigator.share({
                         title: 'National Fuel Pass',
-                        text: `My Fuel Pass Code: ${qrCodeValue}`,
+                        text: `Code: ${qrCodeValue}\nVehicle: ${vehicleTextElement.textContent}`,
                         url: window.location.href
                     });
-                } catch (err) {
-                    console.log("Share cancelled or failed", err);
-                }
+                } catch (err) { console.log("Share failed", err); }
             } else {
-                alert("Sharing is not supported on this browser. Try using a mobile device.");
+                alert("Sharing not supported on this browser.");
             }
         });
 
-        // --- Translation Logic (New) ---
+        // Translation logic
         const langButtons = document.querySelectorAll('.lang-btn');
         const translatableElements = document.querySelectorAll('[data-key]');
 
         langButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
                 langButtons.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
                 btn.classList.add('active');
-
-                // Get selected language
                 const selectedLang = btn.getAttribute('data-lang');
-
-                // Update text for all elements with a data-key
                 translatableElements.forEach(el => {
                     const key = el.getAttribute('data-key');
-                    if (translations[selectedLang] && translations[selectedLang][key]) {
+                    if (translations[selectedLang][key]) {
                         el.textContent = translations[selectedLang][key];
                     }
                 });
