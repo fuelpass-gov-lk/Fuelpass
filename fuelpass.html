@@ -253,19 +253,19 @@
         </div>
 
         <div class="card-body">
-            <div class="content-left">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=placeholder" alt="QR Code" class="qr-code-img">
-                
-                <div class="code-text">
-                    <div><span data-key="lbl_code">Code :</span> <span id="qr-code-val"></span></div>
-                    <div style="font-weight: bold; margin-top: 5px;">
-                        <span data-key="lbl_vehicle">Vehicle No :</span> <span id="vehicle-no-val"></span>
-                    </div>
-                </div>
-                
-                <button class="btn btn-blue" data-key="btn_send_qr">Send QR to My Mobile</button>
-                <button class="btn btn-green" data-key="btn_dl_qr">Download QR</button>
-            </div>
+<div class="content-left">
+    <div id="vehicle-no-val" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;"></div>
+    
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=placeholder" alt="QR Code" class="qr-code-img">
+    
+    <div class="code-text">
+        <div><span data-key="lbl_code">Code :</span> <span id="qr-code-val"></span></div>
+    </div>
+    
+    <button class="btn btn-blue" data-key="btn_send_qr">Send QR to My Mobile</button>
+    <button class="btn btn-green" data-key="btn_dl_qr">Download QR</button>
+</div>
+
             
             <div class="content-right">
                 <div class="quota-box">
